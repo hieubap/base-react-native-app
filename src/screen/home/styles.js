@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
   card_promotion: {
     width: 300,
     height: 200,
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 5,
+    marginRight: 5,
     backgroundColor: "white",
     overflow: "scroll",
   },

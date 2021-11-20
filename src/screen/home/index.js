@@ -13,12 +13,12 @@ import {
 import { connect } from "react-redux";
 import { CardNavigate } from "../../components/CardNavigate";
 import { feature, middleHeader, order } from "./constant";
+import { promotion, promotion2 } from "./data";
 import styles from "./styles";
 
 const { width, height } = Dimensions.get("screen");
 
 const Home = ({ updateData, navigation, ...props }) => {
-  console.log(props, width, height, "props");
   return (
     <View style={styles.main}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -66,6 +66,7 @@ const Home = ({ updateData, navigation, ...props }) => {
                 marginLeft: (width - 80 * 4 - 20) / 8,
                 marginRight: (width - 80 * 4 - 20) / 8,
               }}
+              icon={item.icon}
             />
           ))}
         </View>
@@ -76,9 +77,10 @@ const Home = ({ updateData, navigation, ...props }) => {
           horizontal
           showsHorizontalScrollIndicator={false}
         >
-          {feature.map((item, index) => (
+          {promotion.map((item, index) => (
             <View key={index} style={styles.card_promotion}>
-              <Text>{item.title}</Text>
+              {/* <Text>{item.title}</Text> */}
+              <Image source={{ uri: item, width: 300, height: 200 }} />
             </View>
           ))}
         </ScrollView>
@@ -94,6 +96,7 @@ const Home = ({ updateData, navigation, ...props }) => {
                 marginLeft: (width - 80 * 4 - 20) / 8,
                 marginRight: (width - 80 * 4 - 20) / 8,
               }}
+              icon={item.icon}
             />
           ))}
         </View>
@@ -103,9 +106,9 @@ const Home = ({ updateData, navigation, ...props }) => {
           horizontal
           showsHorizontalScrollIndicator={false}
         >
-          {feature.map((item, index) => (
+          {promotion2.map((item, index) => (
             <View key={index} style={styles.card_promotion}>
-              <Text>{item.title}</Text>
+              <Image source={{ uri: item, width: 300, height: 200 }} />
             </View>
           ))}
         </ScrollView>

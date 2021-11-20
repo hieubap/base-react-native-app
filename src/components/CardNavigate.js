@@ -1,11 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import styled from "styled-components";
 
-export const CardNavigate = ({ title, style }) => {
+export const CardNavigate = ({ title, style, icon }) => {
   return (
     <View style={[styles.layout, style]}>
-      <View style={[styles.icon]}></View>
+      <View style={[styles.icon]}>
+        {icon && (
+          <Image
+            source={icon}
+            style={{ width: 42, height: 42, marginTop: 4 }}
+          />
+        )}
+      </View>
       <View style={styles.content}>
         <Text style={styles.text_content}>{title}</Text>
       </View>
@@ -20,7 +27,9 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     alignContent: "center",
+    alignItems: "center",
     marginLeft: 15,
+    overflow: "hidden",
   },
   layout: {
     width: 80,
