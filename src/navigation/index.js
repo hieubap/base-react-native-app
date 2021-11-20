@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import Calendar from "../screen/calendar";
 import Home from "../screen/home";
 import Setting from "../screen/setting";
+import Stock from "../screen/stock";
 
 const Stack = createStackNavigator();
 
@@ -14,18 +15,18 @@ const Drawer = createDrawerNavigator();
 
 const Tab = createBottomTabNavigator();
 
-const DrawManager = (props) => {
-  return (
-    <Drawer.Navigator
-      // drawerContent={(props) => <CustomDrawerContent {...props} />}
-      initialRouteName="Home"
-    >
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Calendar" component={Calendar} />
-      <Drawer.Screen name="Setting" component={Setting} />
-    </Drawer.Navigator>
-  );
-};
+// const DrawManager = (props) => {
+//   return (
+//     <Drawer.Navigator
+//       // drawerContent={(props) => <CustomDrawerContent {...props} />}
+//       initialRouteName="Home"
+//     >
+//       <Drawer.Screen name="Home" component={Home} />
+//       <Drawer.Screen name="Calendar" component={Calendar} />
+//       <Drawer.Screen name="Setting" component={Setting} />
+//     </Drawer.Navigator>
+//   );
+// };
 
 const screenOptions = [
   {
@@ -49,7 +50,7 @@ const screenOptions = [
     name: "Stock",
     icon: require("../assets/image/stock.jpg"),
     iconActive: require("../assets/image/stock-active.jpg"),
-    component: Setting,
+    component: Stock,
   },
   {
     name: "Setting",
