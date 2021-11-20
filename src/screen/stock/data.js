@@ -115,7 +115,7 @@ export const interestRateUsd = [
   },
 ];
 
-export const interestRateUer = [
+export const interestRateEur = [
   {
     title: "Không kỳ hạn",
     rate: 0.3,

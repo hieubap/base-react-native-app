@@ -5,7 +5,7 @@ import Tab from "../../components/Tab";
 import TableLine from "../../components/TableLine";
 import {
   changeRate,
-  interestRateUer as interestRateEur,
+  interestRateEur,
   interestRateUsd,
   interestRateVnd,
   stock,
@@ -61,7 +61,8 @@ const Stock = (props) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingLeft: 5,
+            paddingLeft: 10,
+            paddingTop: 15,
             width: width / 3,
           }}
         >
