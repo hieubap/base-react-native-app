@@ -20,7 +20,13 @@ const Tab = ({ tabs = [], defaultActive }) => {
             key={index}
             onPress={() => setState({ active: name })}
           >
-            <Text style={{ textAlign: "center", color: "#095f9a" }}>
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+                color: "#095f9a",
+              }}
+            >
               {name}
             </Text>
           </TouchableOpacity>
@@ -55,7 +61,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   name: {
-    padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
     flex: 1,
   },
   active: {

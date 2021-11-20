@@ -6,6 +6,7 @@ import { Image } from "react-native";
 import { connect } from "react-redux";
 import Calendar from "../screen/calendar";
 import Home from "../screen/home";
+import notification from "../screen/notification";
 import Setting from "../screen/setting";
 import Stock from "../screen/stock";
 
@@ -39,7 +40,7 @@ const screenOptions = [
     name: "Notification",
     icon: require("../assets/image/bell.jpg"),
     iconActive: require("../assets/image/bell-active.jpg"),
-    component: Calendar,
+    component: notification,
   },
   {
     name: "Shop",

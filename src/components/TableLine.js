@@ -27,11 +27,14 @@ const TableLine = ({ dataSource, column, ignoreTitle = false }) => {
 
       {dataSource.map((row, index) => (
         <View key={index} style={styles.row}>
-          {column.map((col) =>
+          {column.map((col, idx) =>
             col.render ? (
               col.render(row[col.dataIndex], row, index)
             ) : (
-              <View style={[styles.col, col.style, { width: col.width }]}>
+              <View
+                key={idx}
+                style={[styles.col, col.style, { width: col.width }]}
+              >
                 <Text style={col.styleText}>{row[col.dataIndex]}</Text>
               </View>
             )
