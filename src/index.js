@@ -6,7 +6,6 @@ import store from "./redux";
 import Navigation from "./navigation";
 
 export default function App() {
-  console.log("access debug ok !!!");
   return (
     <Provider store={store}>
       <NavigationContainer>

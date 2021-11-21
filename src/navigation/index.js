@@ -2,12 +2,22 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { Image } from "react-native";
+import {
+  Image,
+  Text,
+  Touchable,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+
 import { connect } from "react-redux";
 import Calendar from "../screen/calendar";
 import Home from "../screen/home";
 import notification from "../screen/notification";
 import Setting from "../screen/setting";
+import Shop from "../screen/shop";
 import Stock from "../screen/stock";
 
 const Stack = createStackNavigator();
@@ -16,18 +26,23 @@ const Drawer = createDrawerNavigator();
 
 const Tab = createBottomTabNavigator();
 
-// const DrawManager = (props) => {
-//   return (
-//     <Drawer.Navigator
-//       // drawerContent={(props) => <CustomDrawerContent {...props} />}
-//       initialRouteName="Home"
-//     >
-//       <Drawer.Screen name="Home" component={Home} />
-//       <Drawer.Screen name="Calendar" component={Calendar} />
-//       <Drawer.Screen name="Setting" component={Setting} />
-//     </Drawer.Navigator>
-//   );
-// };
+const StackNavigation = (props) => {
+  return (
+    <Stack.Navigator
+      // drawerContent={(props) => <CustomDrawerContent {...props} />}
+      initialRouteName="HomePage"
+      headerMode="none"
+    >
+      <Stack.Screen name="HomePage" component={TabNavigation} />
+      <Stack.Screen name="Setting" component={Setting} />
+    </Stack.Navigator>
+  );
+};
+const TabSetting = () => (
+  <View>
+    <Text>Setting tab</Text>
+  </View>
+);
 
 const screenOptions = [
   {
@@ -45,7 +60,7 @@ const screenOptions = [
   {
     name: "Shop",
     icon: require("../assets/image/shop.jpg"),
-    component: Setting,
+    component: Shop,
   },
   {
     name: "Stock",
@@ -56,36 +71,104 @@ const screenOptions = [
   {
     name: "Setting",
     icon: require("../assets/image/setting.jpg"),
-    component: Setting,
+    component: TabSetting,
+    isStack: true,
   },
 ];
 
-function StackNavigation({ mode }) {
+const TabChild = ({
+  route: currentScreen,
+  state,
+  index,
+  stackNavigation,
+  tabNavigation,
+  ...prop
+}) => {
+  return (
+    <TouchableWithoutFeedback
+      onPress={() => {
+        currentScreen.isStack
+          ? stackNavigation.push(currentScreen.name)
+          : tabNavigation.navigate(currentScreen.name);
+      }}
+    >
+      <View
+        style={{
+          width: "20%",
+          alignItems: "center",
+          // borderWidth: 1,
+          backgroundColor: "white",
+          height: 45,
+        }}
+      >
+        <Image
+          source={
+            state.index === index
+              ? currentScreen.iconActive || currentScreen.icon
+              : currentScreen.icon
+          }
+          style={{ width: 32, height: 32, marginTop: 4 }}
+        />
+      </View>
+    </TouchableWithoutFeedback>
+  );
+};
+
+function TabNavigation({ mode, navigation: stackNavigation, ...props }) {
   return (
     <Tab.Navigator
       // headerMode="screen"
       // drawerContent={(props) => <CustomDrawerContent {...props} />}
-      screenOptions={({ route }) => ({
+
+      screenOptions={({ route, navigation: tabNavigation }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           const currentScreen = screenOptions.find(
             (item) => item.name === route.name
           );
           // You can return any component that you like here!
           return (
-            <Image
-              source={
-                focused
-                  ? currentScreen.iconActive || currentScreen.icon
-                  : currentScreen.icon
-              }
-              style={{ width: 32, height: 32, marginTop: 10 }}
-            />
+            <TouchableOpacity
+              style={{
+                width: "100%",
+                alignItems: "center",
+                borderWidth: 1,
+                height: 50,
+                marginTop: 15,
+              }}
+              onPress={() => {
+                currentScreen.isStack
+                  ? stackNavigation.navigate(route.name)
+                  : tabNavigation.navigate(route.name);
+              }}
+            >
+              <Image
+                source={
+                  focused
+                    ? currentScreen.iconActive || currentScreen.icon
+                    : currentScreen.icon
+                }
+                style={{ width: 32, height: 32, marginTop: 8 }}
+              />
+            </TouchableOpacity>
           );
         },
         tabBarLabel: "",
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "gray",
+        tabBarBadgeStyle: { borderWidth: 1, borderColor: "crimso" },
       })}
+      tabBar={(props) => (
+        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+          {screenOptions.map((item, index) => (
+            <TabChild
+              key={index}
+              route={item}
+              index={index}
+              tabNavigation={props.navigation}
+              stackNavigation={stackNavigation}
+              {...props}
+            />
+          ))}
+        </View>
+      )}
     >
       {screenOptions.map((item, index) => (
         <Tab.Screen

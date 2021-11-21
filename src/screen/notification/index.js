@@ -20,7 +20,6 @@ import styles from "./styles";
 const { width, height } = Dimensions.get("screen");
 
 const Notification = ({ updateData, navigation, ...props }) => {
-  console.log(props, width, height, "props");
   return (
     <View style={styles.main}>
       <ScrollView showsVerticalScrollIndicator={false}>
