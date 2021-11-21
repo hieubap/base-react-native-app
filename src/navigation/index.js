@@ -13,6 +13,7 @@ import {
 } from "react-native";
 
 import { connect } from "react-redux";
+import AccountInfo from "../screen/account-info";
 import Calendar from "../screen/calendar";
 import Home from "../screen/home";
 import notification from "../screen/notification";
@@ -35,6 +36,7 @@ const StackNavigation = (props) => {
     >
       <Stack.Screen name="HomePage" component={TabNavigation} />
       <Stack.Screen name="Setting" component={Setting} />
+      <Stack.Screen name="AccountInfo" component={AccountInfo} />
     </Stack.Navigator>
   );
 };

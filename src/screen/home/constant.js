@@ -80,6 +80,7 @@ export const middleHeader = [
   {
     title: "Tài khoản",
     image: require("../../assets/image/wallet.jpg"),
+    screen: "AccountInfo",
   },
   {
     title: "Dịch vụ thẻ",

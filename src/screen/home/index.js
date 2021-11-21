@@ -10,6 +10,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { CardNavigate } from "../../components/CardNavigate";
 import { feature, middleHeader, order } from "./constant";
@@ -26,19 +27,20 @@ const Home = ({ updateData, navigation, ...props }) => {
 
         <View style={styles.middle_header}>
           {middleHeader.map((item, index) => (
-            <View
+            <TouchableWithoutFeedback
               key={index}
               style={{
                 alignItems: "center",
                 width: 100,
               }}
+              onPress={() => (item.screen ? navigation.push(item.screen) : {})}
             >
               <Image
                 source={item.image}
                 style={{ width: 48, resizeMode: "contain" }}
               />
               <Text style={styles.middle_text}>{item.title}</Text>
-            </View>
+            </TouchableWithoutFeedback>
           ))}
           <View
             style={{
