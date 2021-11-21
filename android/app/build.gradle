@@ -126,7 +126,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.testapp"
+        applicationId "com.basereactnativeapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
